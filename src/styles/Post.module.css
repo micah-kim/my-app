@@ -1,0 +1,98 @@
+.post {
+    background-color: #f5f3ef;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 50px 0;
+}
+
+.postPhotoContainer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.postPhotoContainerContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    margin: 10px 0;
+    border: 0.5px #b9b9b9 solid;
+    border-radius: 5px;
+}
+
+.postUsername {
+    display: flex;
+    margin: 10px;
+}
+
+.postUsernameImg {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px black solid;
+}
+
+.postUsernameId {
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.postPhoto {
+    width: 500px;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.postPhotoBottom {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.postLikeButton, .postCommentButton {
+    padding: 0 10px 5px 0;
+    cursor: pointer;
+}
+
+.postLikeCount {
+    padding: 5px 0;
+}
+
+.postComments {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+}
+
+.postTimespan {
+    padding: 5px 0;
+    color: #8d8a8a;
+}
+
+.addComment{
+    margin-top: 6px;
+    border-bottom: 1px solid #efefef;
+    padding: 10px 0;
+    display: flex;
+}
+
+.addComment input{
+    background: none;
+    border: none;
+    height: 16px;
+    outline: none;
+    font:inherit;
+    padding: 0;
+    width: 100%;
+}
+
+.addComment ::placeholder { 
+    color: #999;
+}
+
+.addComment button{
+    color:#3897f0;
+    font-weight: 600;
+    font-size: 16px;
+}

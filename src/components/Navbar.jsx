@@ -1,40 +1,45 @@
 import React from 'react';
 import css from '../styles/Navbar.module.css';
 import publicUrl from '../utils/publicUrl';
+import { Link } from "react-router-dom";
 
 function Navbar(props) {
 
-  function handleClick(page) {
+  function handleNavChange(page) {
     console.log("clicked!", page);
     console.log("props", props.onNavChange());
+
+    if (props.onNavChange) {
+      props.onNavChange(page);
+    }
   }
 
   return (
     <nav className={css.navbar}>
       <div className={css.navItem}>
-        <button className={css.navItemButton} onClick={e=>handleClick("home")}>
+        <Link to="/">
           <img src={publicUrl('/assets/assets/home.svg')} alt="Home"/>
-        </button>
+        </Link>
       </div>
       <div className={css.navItem}>
-        <button className={css.navItemButton} onClick={e=>handleClick("explore")}>
+        <Link to="explore">
           <img src={publicUrl('/assets/assets/explore.svg')} alt="Explore"/>
-        </button>
+        </Link>
       </div>
       <div className={css.navItem}>
-        <button className={css.navItemButton} onClick={e=>handleClick("newpost")}>
+        <Link to="newpost">
           <img src={publicUrl('/assets/assets/newpost.svg')} alt="New Post"/>
-        </button>
+        </Link>
       </div>
       <div className={css.navItem}>
-        <button className={css.navItemButton} onClick={e=>handleClick("activity")}>
-          <img src={publicUrl('/assets/assets/activity.svg')} alt="Activity" />
-        </button>
+        <Link to="activity">
+          <img src={publicUrl('/assets/assets/activity.svg')} alt="Activity"/>
+        </Link>
       </div>
       <div className={css.navItem}>
-        <button className={css.navItemButton} onClick={e=>handleClick("profile")}>
-          <img src={publicUrl('/assets/assets/profile.svg')} alt="Profile" />
-        </button>
+        <Link to="profile">
+          <img src={publicUrl('/assets/assets/profile.svg')} alt="Profile"/>
+        </Link>
       </div>
     </nav>
   );
