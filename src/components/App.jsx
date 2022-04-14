@@ -56,12 +56,21 @@ function App() {
       datetime: new Date().toISOString()
     };
     setPosts(posts.concat(post));
-    
-    setPage("home");
   }
 
   function cancelPost() {
-    setPage("home");
+  }
+
+  function addFollower(userId, followerId){
+    const follower ={
+      userId: userId,
+      followerId: followerId
+    }
+    setFollowers(followers.concat(follower));
+  }
+  function removeFollower(userId, followerId){
+    setFollowers(followers.filter((follower) => 
+      !(follower.userId === userId && follower.followerId === followerId)))
   }
 
   return (
@@ -82,18 +91,34 @@ function App() {
                 onComment={addComment}
               />
             }/>
-            <Route path="/newpost" element={
+            <Route path=":postId" element={ 
+              <Home
+                currentUserId={currentUserId}
+                posts={posts}
+                users={users}
+                comments={comments}
+                likes={likes}
+                onLike={addLike}
+                onUnlike={removeLike}
+                onComment={addComment}
+              />
+            }>
+
+            </Route>
+            <Route path="newpost" element={
               <NewPost
                 onPost={addPost}
                 onCancelPost={cancelPost}
               />
             }/>
-            <Route path="profile" element={
+            <Route path="/profile/:userId" element={
               <Profile
                 currentUserId={currentUserId}
                 posts={posts}
                 users={users}
                 followers={followers}
+                onFollow={addFollower} 
+                onUnfollow={removeFollower}
               />
             }/>
           </Routes>

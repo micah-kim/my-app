@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import css from '../styles/Navbar.module.css';
+import initialStore from 'utils/initialStore.js';
 import publicUrl from '../utils/publicUrl';
 import { Link } from "react-router-dom";
 
 function Navbar(props) {
+
+  const [currentUserId, setCurrentUserId] = useState(initialStore.currentUserId);
 
   function handleNavChange(page) {
     console.log("clicked!", page);
@@ -37,7 +40,7 @@ function Navbar(props) {
         </Link>
       </div>
       <div className={css.navItem}>
-        <Link to="profile">
+        <Link to={"profile/" + currentUserId}>
           <img src={publicUrl('/assets/assets/profile.svg')} alt="Profile"/>
         </Link>
       </div>

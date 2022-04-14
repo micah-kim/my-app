@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import css from "../styles/Post.module.css";
 import publicUrl from '../utils/publicUrl';
 import timespan from "../utils/timespan.js";
+import { Link } from 'react-router-dom';
 
 function Post(props) {
 
@@ -32,7 +33,7 @@ function Post(props) {
                 <div className={css.postPhotoContainerContainer}>
                     <div className={css.postUsername}>
                         <img className={css.postUsernameImg} src={publicUrl(user.photo)} alt="" />
-                        <button className={css.postUsernameId}>{post.userId}</button>
+                        <Link to={"/profile/" + post.userId}><button className={css.postUsernameId}>{post.userId}</button></Link>
                     </div>
                     <div><img className={css.postPhoto} src={post.photo} width="100%" alt="post-1"/></div>
                     <div className={css.postPhotoBottom}>
@@ -51,15 +52,13 @@ function Post(props) {
                             <strong>{props.likes.count} Likes</strong>
                         </div>
                         <div className={css.postDescription}>
-                            <div><strong>{post.userId}</strong> {post.desc}</div>
+                            <div><strong><Link className={css.comment} to={"/profile/" + post.userId}><b>{post.userId}</b></Link></strong> {post.desc}</div>
                         </div>
                         <div className={css.postComments}>
                         {props.comments.map((comment, i) => (
                             <div key={i}>
                                 <span>
-                                    <b>
-                                        {comment.userId}
-                                    </b>
+                                    <Link className={css.comment} to={"/profile/" + comment.userId}><b>{comment.userId}</b></Link>
                                 </span>
                                 <span> {comment.text}</span>
                                 </div>

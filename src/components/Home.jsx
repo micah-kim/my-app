@@ -1,8 +1,10 @@
 import React from 'react';
 import Post from './Post.jsx';
+import { useParams } from 'react-router-dom';
 
 function Home(props) {
   const {posts, users, likes, comments, currentUserId, onLike, onUnlike, onComment} = props;
+  const {postId} = useParams();
 
   function fineUser(post, users) {
     return users.find((user) => user.id === post.userId);
@@ -22,7 +24,7 @@ function Home(props) {
 
   return (
     <div>
-      {posts.sort((a, b)=>new Date(b.datetime) - new Date(a.datetime))
+      {posts.filter((post) => ((post.id === postId) || (typeof postId === "undefined"))).sort((a, b)=>new Date(b.datetime) - new Date(a.datetime))
       .map(post=>
         <Post
           key={post.id}

@@ -1,6 +1,5 @@
 import React from 'react';
 import css from '../styles/PostThumbnail.module.css';
-import publicUrl from 'utils/publicUrl';
 
 function PostThumbnail(props) {
   return (

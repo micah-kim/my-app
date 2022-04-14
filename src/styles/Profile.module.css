@@ -54,3 +54,27 @@
 .profileInfo li div {
     text-align: center;
 }
+
+.followBtn{
+    height: 30px;
+    background: #3897f0;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    margin:10px 0px;
+}
+.unfollowBtn{
+    height: 30px;
+    background:transparent;
+    border: 1px solid #dbdbdb;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    margin:10px 0px;
+}
+/* this will change the cursor to indicate its clickability*/
+button{
+  cursor:pointer;
+}

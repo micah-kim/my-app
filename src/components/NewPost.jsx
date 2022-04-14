@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import css from '../styles/NewPost.module.css';
 import FileLoader from './FileLoader.js';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
 
 function NewPost(props) {
   const [dragging, setDragging] = useState(false); // to show a dragging effect
@@ -48,10 +48,12 @@ function NewPost(props) {
 
     props.onPost(photo, desc);
     setError('');
+    navigate("/");
   }
 
   function handleCancel(){
     props.onCancelPost();
+    navigate(-1);
   }
   return (
     <div>      
