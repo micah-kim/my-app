@@ -1,17 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import css from '../styles/Profile.module.css';
 import publicUrl from '../utils/publicUrl';
 import PostThumbnail from './PostThumbnail.jsx';
 import { Link, useParams } from "react-router-dom";
+import {StoreContext} from '../contexts/StoreContext.js';
 
 function Profile(props) {
     const {userId} = useParams();
-    const { follwers, onFollow, onUnfollow } = props;
-    const currentUserId = props.currentUserId;
-    const posts = props.posts.filter(posts => (posts.userId === userId));
-    const user = props.users.find(u => u.id === userId);
-    const followers = props.followers.filter(f => f.userId === userId);
-    const following = props.followers.filter(f => f.followerId === userId);
+    const { currentUserId, users, posts, followers, addFollower, removeFollower } = useContext(StoreContext);
+    const user = users.find(u => u.id === userId);
+    const following = followers.filter(f => f.followerId === userId);
     const isFollowing = followers.some((e) => e.followerId === currentUserId && e.userId === userId);
 
     function handleFollow(){ 
@@ -33,8 +31,8 @@ function Profile(props) {
                     <div>
                         <div className={css.userName}>{userId}</div>
                         {isFollowing ? (
-                            <div className={css.unfollowBtn}><button onClick={() => onUnfollow(currentUserId, userId)}>Unfollow</button></div>) :
-                            (<div className={css.followBtn}><button onClick={() => onFollow(currentUserId, userId)}>Follow</button></div>)
+                            <div className={css.unfollowBtn}><button onClick={() => addFollower(currentUserId, userId)}>Unfollow</button></div>) :
+                            (<div className={css.followBtn}><button onClick={() => removeFollower(currentUserId, userId)}>Follow</button></div>)
                         }
                     </div>
                 </div>    

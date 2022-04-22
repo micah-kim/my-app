@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Post from './Post.jsx';
 import { useParams } from 'react-router-dom';
+import {StoreContext} from '../contexts/StoreContext.js';
 
 function Home(props) {
-  const {posts, users, likes, comments, currentUserId, onLike, onUnlike, onComment} = props;
+  const {posts, users, likes, comments, currentUserId, onLike, onUnlike, onComment} = useContext(StoreContext);
   const {postId} = useParams();
 
   function fineUser(post, users) {
