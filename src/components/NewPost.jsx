@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import css from '../styles/NewPost.module.css';
 import FileLoader from './FileLoader.js';
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate, Navigate } from "react-router-dom"; 
 import { StoreContext } from '../contexts/StoreContext.js';
 
 function NewPost(props) {
-  let { addPost, cancelPost } = useContext(StoreContext);
+  const { addPost, cancelPost, currentUserId } = useContext(StoreContext);
   const [dragging, setDragging] = useState(false); // to show a dragging effect
   const [desc, setDesc] = useState('');
   const [photo, setPhoto] = useState(null);
@@ -58,7 +58,9 @@ function NewPost(props) {
     navigate(-1);
   }
   return (
-    <div>      
+    <div> 
+      !currentUserId?<Navigate to="/login"/>:
+      <div>   
         <div className={css.photo}>
           {!photo?  <div className={css.message}>Drop your image</div>:
                     <img src={photo} alt="New Post"/>}
@@ -80,6 +82,7 @@ function NewPost(props) {
         <div className={css.actions}>
           <button onClick={handleCancel}>Cancel</button>
           <button onClick={handleSubmit}>Share</button>          
+        </div>
         </div>
     </div>
   );

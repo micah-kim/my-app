@@ -13,15 +13,15 @@ function Post(props) {
     const [toggleComment, setToggleComment] = useState(false);
 
     function handleLike(){ 
-        props.onLike(props.post.id);
+        props.onLike(post.id);
     }
     
     function handleUnlike(){
-        props.onUnlike(props.post.id);
+        props.onUnlike(post.id);
     }
 
     function handleSubmitComment(event){
-        props.onComment(props.post.id, comment);
+        props.onComment(post.id, comment);
         setComment('');
         setToggleComment(false);
         event.preventDefault();
@@ -61,8 +61,8 @@ function Post(props) {
                                     <Link className={css.comment} to={"/profile/" + comment.userId}><b>{comment.userId}</b></Link>
                                 </span>
                                 <span> {comment.text}</span>
-                                </div>
-                            ))}
+                            </div>
+                        ))}
                         </div>
                         <div className={css.postTimespan}>{timespan(post.datetime)}</div>
                         {toggleComment &&

@@ -12,6 +12,8 @@ import uniqueId from 'utils/uniqueId.js';
 import NewPost from './NewPost.jsx';
 import StoreContextProvider from '../contexts/StoreContext.js';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from './Login/Login.js';
+import Signup from './Signup/Signup.js';
 
 function App() {
 
@@ -43,6 +45,14 @@ function App() {
 
                 />
               }/>
+              <Route path="login" element={
+                <Login 
+
+                />}/>
+                <Route path="signup" element={
+                <Signup
+                
+                />}/>
             </Routes>
           </main>
           <Navbar />

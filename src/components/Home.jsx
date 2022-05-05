@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import Post from './Post.jsx';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import {StoreContext} from '../contexts/StoreContext.js';
 
 function Home(props) {
-  const {posts, users, likes, comments, currentUserId, onLike, onUnlike, onComment} = useContext(StoreContext);
+  const {posts, users, likes, comments, currentUserId, addLike, removeLike, addComment} = useContext(StoreContext);
   const {postId} = useParams();
 
   function fineUser(post, users) {
@@ -25,6 +25,8 @@ function Home(props) {
 
   return (
     <div>
+      !currentUserId? <Navigate to="/login"/>:
+
       {posts.filter((post) => ((post.id === postId) || (typeof postId === "undefined"))).sort((a, b)=>new Date(b.datetime) - new Date(a.datetime))
       .map(post=>
         <Post
@@ -33,9 +35,9 @@ function Home(props) {
           post={post}
           comments={findComments(post, comments)}
           likes={findLikes(post, likes)}
-          onLike = {onLike}
-          onUnlike = {onUnlike}
-          onComment={onComment}
+          onLike = {addLike}
+          onUnlike = {removeLike}
+          onComment={addComment}
         />)}
     </div>
   );
